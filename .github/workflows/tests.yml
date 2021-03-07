@@ -103,13 +103,12 @@ jobs:
 
       - name: 'Bundle install wagons'
         run: |
-          hitobito_dir=$(realpath hitobito)
-          for d in hitobito_*; do
+          hitobito_dir=$(realpath ./)
+          for d in $hitobito_dir/../hitobito_*; do
             cd $d
             cp -v $hitobito_dir/Gemfile.lock ./
             bundle install --jobs 4 --retry 3
           done
-        working-directory: .
 
       - uses: actions/cache@v2
         with:
